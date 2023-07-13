@@ -1,0 +1,34 @@
+#include "Rotation.hlsl"
+#include "Linear2Gamma.hlsl"
+
+#pragma kernel RotateAndConvertColor
+
+// テクスチャへの参照
+Texture2D<float4> InputTexture;
+
+// レンダーテクスチャへの参照
+RWTexture2D<float4> OutputTexture;
+
+// 回転角度
+float RotationAngle;
+
+[numthreads(8, 8, 1)]
+void RotateAndConvertColor(uint3 id : SV_DispatchThreadID)
+{
+    uint Width, Height;
+    InputTexture.GetDimensions(Width, Height);
+
+    if (id.x >= Width || id.y >= Height)  return;
+
+    float2 uv = float2(id.x, id.y) / float2(Width, Height);
+
+    // Rotate
+    float4 sample;
+    Rotation(InputTexture, uv, RotationAngle, sample);
+
+    // Linear2Gamma
+    float4 gammaCorrectedColor;
+    Linear2Gamma(sample, gammaCorrectedColor);
+
+    OutputTexture[id.xy] = gammaCorrectedColor;
+}

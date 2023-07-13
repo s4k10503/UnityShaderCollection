@@ -1,0 +1,37 @@
+#include "Saturation.hlsl"
+#include "Contrast.hlsl"
+#include "Mosaic.hlsl"
+#include "Quantize.hlsl"
+#include "EdgeDetection.hlsl"
+#include "Linear2Gamma.hlsl"
+
+#pragma kernel PixelArt
+
+RWTexture2D<float4> outputTexture;
+Texture2D<float4> inputTexture;
+RWTexture2D<float4> tempTexture;
+int mosaicSize;
+int colorLevel;
+int2 dimensions;
+float saturation;
+float contrast;
+
+[numthreads(8,8,1)]
+void PixelArt (uint3 id : SV_DispatchThreadID)
+{
+    tempTexture[id.xy] = inputTexture[id.xy];
+    float4 tempColor = tempTexture[id.xy];
+
+    ChangeSaturation(tempColor, saturation, tempColor);
+
+    Contrast(tempColor, contrast, tempColor);
+    tempTexture[id.xy] = tempColor;
+    
+    Mosaic(tempTexture, id, mosaicSize, dimensions, tempColor);
+
+    Quantize(tempColor, colorLevel, tempColor);
+    
+    Linear2Gamma(tempColor, tempColor);
+    
+    outputTexture[id.xy] = tempColor;
+}
