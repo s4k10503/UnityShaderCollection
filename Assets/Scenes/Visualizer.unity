@@ -132,8 +132,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 367290630}
-  - component: {fileID: 367290629}
   - component: {fileID: 367290631}
+  - component: {fileID: 367290633}
   - component: {fileID: 367290632}
   m_Layer: 0
   m_Name: Visualizer
@@ -142,22 +142,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &367290629
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 367290628}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b0fc311bcf7a4d44d8007f2306dfb2b9, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _source: {fileID: 367290631}
-  _preview: {fileID: 2053451812}
-  _shaderHandler: {fileID: 367290632}
-  _sourceTexture: {fileID: 0}
 --- !u!4 &367290630
 Transform:
   m_ObjectHideFlags: 0
@@ -214,6 +198,21 @@ MonoBehaviour:
   _contrast: 1
   _mosaicSize: 1
   _colorLevel: 256
+--- !u!114 &367290633
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 367290628}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b0fc311bcf7a4d44d8007f2306dfb2b9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _source: {fileID: 367290631}
+  _preview: {fileID: 2053451812}
+  _shaderHandler: {fileID: 367290632}
 --- !u!1 &616222626
 GameObject:
   m_ObjectHideFlags: 0
