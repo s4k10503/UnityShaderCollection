@@ -4,35 +4,43 @@ using Klak.TestTools;
 
 sealed class Visualizer : MonoBehaviour
 {
-    [SerializeField] ImageSource _source = null;
-    [SerializeField] RawImage _preview = null;
-    [SerializeField] ComputeShaderHandler _shaderHandler = null;
+    [SerializeField] private ImageSource _source = null;
+    [SerializeField] private RawImage _preview = null;
+    [SerializeField] private ComputeShaderHandler _shaderHandler = null;
 
-    public RenderTexture _sourceTexture;
+    private RenderTexture _sourceTexture;
     private RenderTexture _previewTexture;
     private RenderTexture _tempTexture;
 
-    void Start()
+    private void Start()
+    {
+        InitializeTextures();
+    }
+
+    private void Update()
+    {
+        RunImageProcessing();
+    }
+
+    private void InitializeTextures()
     {
         _sourceTexture = _source.Texture as RenderTexture;
-
-        _previewTexture = new RenderTexture(_sourceTexture.width, _sourceTexture.height, 0);
-        _previewTexture.enableRandomWrite = true;
-        _previewTexture.Create();
-
-        _tempTexture = new RenderTexture(_sourceTexture.width, _sourceTexture.height, 0);
-        _tempTexture.enableRandomWrite = true;
-        _tempTexture.Create();
+        _previewTexture = CreateRenderTexture(_sourceTexture.width, _sourceTexture.height);
+        _tempTexture = CreateRenderTexture(_sourceTexture.width, _sourceTexture.height);
     }
 
-    void Update()
+    private RenderTexture CreateRenderTexture(int width, int height)
     {
-        ImageProcessing();
+        var renderTexture = new RenderTexture(width, height, 0);
+        renderTexture.enableRandomWrite = true;
+        renderTexture.Create();
+
+        return renderTexture;
     }
 
-    private void ImageProcessing()
+    private void RunImageProcessing()
     {        
-        _shaderHandler.RunComputeShader(_sourceTexture, _tempTexture, _previewTexture);
+        _shaderHandler.RunShader(_sourceTexture, _tempTexture, _previewTexture);
         _preview.texture = _previewTexture;
     }
 }
