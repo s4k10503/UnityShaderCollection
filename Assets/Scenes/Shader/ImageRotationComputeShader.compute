@@ -1,0 +1,21 @@
+#include "ImageRotation.hlsl"
+#include "Linear2Gamma.hlsl"
+
+#pragma kernel RotateImage
+
+RWTexture2D<float4> outputTexture;
+Texture2D<float4> inputTexture;
+RWTexture2D<float4> tempTexture;
+
+float rotationAngle;
+
+[numthreads(8, 8, 1)]
+void RotateImage(uint3 id : SV_DispatchThreadID)
+{
+    float4 tempColor;
+
+    ImageRotation(inputTexture, id, rotationAngle, tempColor);
+    Linear2Gamma(tempColor, tempColor);
+
+    outputTexture[id.xy] = tempColor;
+}
