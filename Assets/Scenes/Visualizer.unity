@@ -135,6 +135,7 @@ GameObject:
   - component: {fileID: 367290631}
   - component: {fileID: 367290633}
   - component: {fileID: 367290632}
+  - component: {fileID: 367290634}
   m_Layer: 0
   m_Name: Visualizer
   m_TagString: Untagged
@@ -212,7 +213,21 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _source: {fileID: 367290631}
   _preview: {fileID: 2053451812}
-  _shaderHandler: {fileID: 367290632}
+  _shaderHandler: {fileID: 367290634}
+--- !u!114 &367290634
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 367290628}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 24aea727fa6fe744b96479a51443bf30, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _mainComputeShader: {fileID: 7200000, guid: fcd087b169a5f994cbb57ab04a9a1932, type: 3}
+  _rotationAngle: 0
 --- !u!1 &616222626
 GameObject:
   m_ObjectHideFlags: 0

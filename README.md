@@ -27,3 +27,10 @@ Applies specific image processing effects based on user-specified parameters.
 This is a sample of piexlart effect using PixelArtHandler.cs & PixelArt.compute.  
 
 ![lenna_pixelart](https://github.com/s4k10503/UnityShaderCollection/assets/50241623/35b3c224-19d1-44f2-8700-18c367836210)
+
+#### ImageRotation
+
+This is a sample of Rotation effect using ImageRotationHandler.cs & ImageRotationComputeShader.compute.  
+
+![lenna_rotation](https://github.com/s4k10503/UnityShaderCollection/assets/50241623/2d9b5e49-279c-43cb-89ce-a1f0cc1bfdcf)
+
