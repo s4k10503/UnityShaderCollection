@@ -11,7 +11,7 @@ Applies specific image processing effects based on user-specified parameters.
 
 - IShaderHandler Interface: This interface abstracts the execution of any shader.
 - ComputeShaderHandler Class: This class implements the IShaderHandler interface and defines the generic behavior for shader processing.
-- PixelArtHandler Class: This class inherits from ComputeShaderHandler and provides a specific implementation for pixel art processing.
+- ThredSize Struct: This structure defines the thread size of the shader. The thread size is used to specify the dimension of the threads in the grid in a compute shader run. This structure specifies the number of threads for the X, Y, and Z directions.
 - Visualizer Class: This class uses an instance of ComputeShaderHandler or its subclasses to perform specific shader processing.
 
 ### Usage
@@ -30,7 +30,13 @@ This is a sample of piexlart effect using PixelArtHandler.cs & PixelArt.compute.
 
 #### ImageRotation
 
-This is a sample of Rotation effect using ImageRotationHandler.cs & ImageRotationComputeShader.compute.  
+This is a sample of rotation effect using ImageRotationHandler.cs & ImageRotationComputeShader.compute.  
 
 ![lenna_rotation](https://github.com/s4k10503/UnityShaderCollection/assets/50241623/2d9b5e49-279c-43cb-89ce-a1f0cc1bfdcf)
+
+#### Glitch
+
+This is a sample of glitch effect using GlitchEffectHandler.cs & GlitchEffect.compute.  
+
+![lenna_glitch](https://github.com/s4k10503/UnityShaderCollection/assets/50241623/95e784d5-3603-4896-a61c-9ad4a1ac3779)
 

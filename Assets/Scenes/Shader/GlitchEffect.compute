@@ -1,0 +1,56 @@
+#include "Linear2Gamma.hlsl"
+
+#pragma kernel GlitchEffect
+
+// Input
+Texture2D<float4> inputTexture;
+float Time;
+float GLITCH_AMOUNT;
+float LINE_DENSITY;
+float RANDOM_SEED1;
+float RANDOM_SEED2;
+float EFFECT_RATE1;
+float EFFECT_RATE2;
+float EFFECT_RATE3;
+
+// Output
+RWTexture2D<float4> outputTexture;
+
+[numthreads(8, 8, 1)]
+void GlitchEffect (uint3 id : SV_DispatchThreadID) {
+    // Get the dimensions of the input texture
+    uint textureWidth, textureHeight;
+    inputTexture.GetDimensions(textureWidth, textureHeight);
+
+    float2 uv =  float2(id.x, id.y) / float2(textureWidth, textureHeight);
+
+    // Vertical line noise
+    float lineNoise = 0.0;
+    if (frac(Time * EFFECT_RATE1) < 0.1) { // Randomly activate
+        lineNoise = sin(uv.x * LINE_DENSITY) * GLITCH_AMOUNT;
+    }
+
+    // Block disorder
+    float2 blockDistortion = float2(0.0, 0.0);
+    if (frac(sin(Time * EFFECT_RATE2) * RANDOM_SEED1) < 0.1) { // Randomly activate
+        blockDistortion = float2(sin(uv.x * 100.0), sin(uv.y * 100.0)) * GLITCH_AMOUNT * 0.5;
+    }
+
+    // Color Shift
+    float3 rgbShift = float3(0.0, 0.0, 0.0);
+    if (frac(cos(Time * EFFECT_RATE3) * RANDOM_SEED2) < 0.1) { // Randomly activate
+        rgbShift = float3(GLITCH_AMOUNT, -GLITCH_AMOUNT, GLITCH_AMOUNT * 0.5);
+    }
+
+    // Get color from original texture
+    float4 rCol = inputTexture.Load(int3((uv + float2(lineNoise, 0) + blockDistortion + rgbShift.rrr) * float2(textureWidth, textureHeight), 0));
+    float4 gCol = inputTexture.Load(int3((uv + float2(lineNoise, 0) + blockDistortion + rgbShift.ggg) * float2(textureWidth, textureHeight), 0));
+    float4 bCol = inputTexture.Load(int3((uv + float2(lineNoise, 0) + blockDistortion + rgbShift.bbb) * float2(textureWidth, textureHeight), 0));
+
+    // Convert to gamma space
+    float4 tempColor;
+    Linear2Gamma(float4(rCol.r, gCol.g, bCol.b, 1.0), tempColor);
+
+    // Write results
+    outputTexture[id.xy] = tempColor;
+}
