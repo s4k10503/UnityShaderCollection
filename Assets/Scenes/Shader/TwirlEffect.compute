@@ -1,0 +1,20 @@
+#include "TwirlEffect.hlsl"
+#include "Linear2Gamma.hlsl"
+
+#pragma kernel Twirl
+
+RWTexture2D<float4> outputTexture;
+Texture2D<float4> inputTexture;
+
+// Twirl parameters
+float strength;
+float radiusPercentage;
+
+[numthreads(8, 8, 1)]
+void Twirl (uint3 id : SV_DispatchThreadID)
+{
+    float4 tempColor;
+    ApplyTwirl(inputTexture, id.xy, strength, radiusPercentage, tempColor);
+    Linear2Gamma(tempColor, tempColor);
+    outputTexture[id.xy] = tempColor;
+}
