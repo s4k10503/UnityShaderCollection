@@ -40,3 +40,8 @@ This is a sample of glitch effect using GlitchEffectHandler.cs & GlitchEffect.co
 
 ![lenna_glitch](https://github.com/s4k10503/UnityShaderCollection/assets/50241623/95e784d5-3603-4896-a61c-9ad4a1ac3779)
 
+#### Twirl
+
+This is a sample of twirl effect using TwirlEffectHandler.cs & TwirlEffect.compute.  
+
+![lenna_twirl](https://github.com/s4k10503/UnityShaderCollection/assets/50241623/d05acaa6-15b3-497b-a6b2-69adc8ce0d24)
