@@ -2,7 +2,7 @@
 
 I plan to add various shaders in the future. Now there is a file about compute shaders.
 
-## Visualizer.unity
+## Visualizer2D.unity
 
 This is a sample that visualizes the result of image processing using a compute shader in Unity.  
 Applies specific image processing effects based on user-specified parameters.
