@@ -1,0 +1,39 @@
+#include "Linear2Gamma.hlsl"
+
+#pragma kernel RadialBlur
+
+RWTexture2D<float4> outputTexture;
+Texture2D<float4> inputTexture;
+
+uint sampleCount;
+float blurIntensity;
+
+[numthreads(8, 8, 1)]
+void RadialBlur(uint3 id : SV_DispatchThreadID) {
+    uint textureWidth, textureHeight;
+    inputTexture.GetDimensions(textureWidth, textureHeight);
+
+    float2 uv = float2(id.x, id.y) / float2(textureWidth, textureHeight);
+    float2 center = float2(0.5, 0.5);
+    float2 directionToCenter = normalize(center - uv);
+    float distanceToCenter = length(uv - center);
+    float blurStrength = distanceToCenter / 0.5 * blurIntensity;
+
+    float4 tempColor = float4(0, 0, 0, 0);
+    for (uint i = 0; i < sampleCount; i++) {
+        float t = float(i) / (sampleCount - 1);
+        float2 offset = directionToCenter * blurStrength * t * t;
+        float2 sampledPos = uv + offset;
+        sampledPos = saturate(sampledPos);
+        sampledPos *= float2(textureWidth, textureHeight);
+
+        tempColor += inputTexture[sampledPos];
+    }
+
+    tempColor /= sampleCount;
+
+    Linear2Gamma(tempColor, tempColor);
+    outputTexture[id.xy] = tempColor;
+}
+
+
