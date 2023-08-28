@@ -1,0 +1,33 @@
+#include "Linear2Gamma.hlsl"
+
+#pragma kernel Shake
+
+RWTexture2D<float4> outputTexture;
+Texture2D<float4> inputTexture;
+
+float time; 
+float frequency;
+float shakeIntensity; 
+
+[numthreads(8, 8, 1)]
+void Shake(uint3 id : SV_DispatchThreadID) {
+    uint textureWidth, textureHeight;
+    inputTexture.GetDimensions(textureWidth, textureHeight);
+
+    float2 uv = float2(id.x, id.y) / float2(textureWidth, textureHeight);
+
+    const float shakeScalingFactor = 0.1;
+    float xShake = sin(time * frequency * 3.14159) * (shakeIntensity * shakeScalingFactor);
+    float yShake = sin((time + 0.5) * frequency * 3.14159) * (shakeIntensity * shakeScalingFactor);
+    float2 shake = float2(xShake, yShake);
+
+    float2 sampledPos = uv + shake;
+    sampledPos = saturate(sampledPos);
+    sampledPos = min(sampledPos, float2((textureWidth - 1.0) / textureWidth, (textureHeight - 1.0) / textureHeight));
+    sampledPos *= float2(textureWidth, textureHeight);
+
+    float4 tempColor = inputTexture[sampledPos];
+    Linear2Gamma(tempColor, tempColor);
+
+    outputTexture[id.xy] = tempColor;
+}

@@ -139,6 +139,7 @@ GameObject:
   - component: {fileID: 367290635}
   - component: {fileID: 367290636}
   - component: {fileID: 367290637}
+  - component: {fileID: 367290638}
   m_Layer: 0
   m_Name: Visualizer
   m_TagString: Untagged
@@ -216,7 +217,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _source: {fileID: 367290631}
   _preview: {fileID: 2053451812}
-  _shaderHandler: {fileID: 367290637}
+  _shaderHandler: {fileID: 367290638}
 --- !u!114 &367290634
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -281,6 +282,21 @@ MonoBehaviour:
   _mainComputeShader: {fileID: 7200000, guid: a9fb58efe609d1145a9a497a0adbff70, type: 3}
   _sampleCount: 50
   _blurIntensity: 0
+--- !u!114 &367290638
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 367290628}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: df5237531cd7dd540af47177d6936529, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _mainComputeShader: {fileID: 7200000, guid: 028c6280c040e8940ac72cea1b13cae5, type: 3}
+  _frequency: 0
+  _shakeIntensity: 0
 --- !u!1 &616222626
 GameObject:
   m_ObjectHideFlags: 0
