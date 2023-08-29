@@ -51,3 +51,9 @@ This is a sample of twirl effect using TwirlEffectHandler.cs & TwirlEffect.compu
 This is a sample of radial blur effect using RadialBlurHandler.cs & RadialBlur.compute.
 
 ![lenna_radialblur](https://github.com/s4k10503/UnityShaderCollection/assets/50241623/580472a0-87e4-43c6-906c-8eccbdfe22b8)
+
+#### Shake
+
+This is a sample of shake effect using ShakerHandler.cs & shake.compute.
+
+![lenna_shake](https://github.com/s4k10503/UnityShaderCollection/assets/50241623/8f5443c2-d223-4e21-8de9-c80e683ba85d)
