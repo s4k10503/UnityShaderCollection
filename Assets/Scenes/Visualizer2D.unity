@@ -174,13 +174,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 40ff2e515a81541cbb664860588e2c6e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _sourceType: 0
+  _sourceType: 2
   _texture: {fileID: 2800000, guid: 7bce98144b199014bb64e8e8d3c8a838, type: 3}
   _textureUrl: 
   _video: {fileID: 0}
   _videoUrl: 
   _webcamName: Logi C310 HD WebCam
-  _webcamResolution: {x: 1920, y: 1080}
+  _webcamResolution: {x: 1280, y: 720}
   _webcamFrameRate: 30
   _camera: {fileID: 0}
   _outputTexture: {fileID: 0}
@@ -217,7 +217,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _source: {fileID: 367290631}
   _preview: {fileID: 2053451812}
-  _shaderHandler: {fileID: 367290638}
+  _shaderHandler: {fileID: 367290635}
 --- !u!114 &367290634
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -295,7 +295,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _mainComputeShader: {fileID: 7200000, guid: 028c6280c040e8940ac72cea1b13cae5, type: 3}
-  _frequency: 0
+  _frequency: 37
   _shakeIntensity: 0
 --- !u!1 &616222626
 GameObject:

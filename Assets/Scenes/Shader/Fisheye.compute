@@ -1,0 +1,36 @@
+#include "Linear2Gamma.hlsl"
+
+#pragma kernel Fisheye
+
+RWTexture2D<float4> outputTexture;
+Texture2D<float4> inputTexture;
+
+float fisheyeStrength;
+
+[numthreads(8, 8, 1)]
+void Fisheye(uint3 id : SV_DispatchThreadID) {
+    uint textureWidth, textureHeight;
+    inputTexture.GetDimensions(textureWidth, textureHeight);
+
+    float2 uv = float2(id.x, id.y) / float2(textureWidth, textureHeight);
+    float2 center = float2(0.5, 0.5);
+
+    float2 dir = uv - center;
+    float distance = length(dir);
+    
+    if (distance < 1.0) {
+        float newDistance = distance / (1.0 + fisheyeStrength * (1.0 - distance));
+        float2 newDir = dir * (newDistance / distance);
+        float2 fisheyeUV = center + newDir;
+        
+        fisheyeUV = min(fisheyeUV, float2(1.0, 1.0));
+        fisheyeUV = max(fisheyeUV, float2(0.0, 0.0));
+        
+        float4 tempColor = inputTexture[fisheyeUV * float2(textureWidth, textureHeight)];
+        
+        Linear2Gamma(tempColor, tempColor);
+        outputTexture[id.xy] = tempColor;
+    } else {
+        outputTexture[id.xy] = float4(0, 0, 0, 1);
+    }
+}
