@@ -140,6 +140,7 @@ GameObject:
   - component: {fileID: 367290636}
   - component: {fileID: 367290637}
   - component: {fileID: 367290638}
+  - component: {fileID: 367290639}
   m_Layer: 0
   m_Name: Visualizer
   m_TagString: Untagged
@@ -297,6 +298,20 @@ MonoBehaviour:
   _mainComputeShader: {fileID: 7200000, guid: 028c6280c040e8940ac72cea1b13cae5, type: 3}
   _frequency: 37
   _shakeIntensity: 0
+--- !u!114 &367290639
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 367290628}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 056eced044570794c8aa1ce2c4b071f1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _mainComputeShader: {fileID: 7200000, guid: 7a4135bcee5a253489c71272e1f6b3c5, type: 3}
+  _fisheyeStrength: 0
 --- !u!1 &616222626
 GameObject:
   m_ObjectHideFlags: 0
