@@ -39,8 +39,15 @@ sealed class Visualizer : MonoBehaviour
     }
 
     private void RunImageProcessing()
-    {        
+    {
         _shaderHandler.RunShader(_sourceTexture, _tempTexture, _previewTexture);
         _preview.texture = _previewTexture;
+    }
+
+    private void OnDisable()
+    {
+        _sourceTexture.Release();
+        _previewTexture.Release();
+        _tempTexture.Release();
     }
 }
