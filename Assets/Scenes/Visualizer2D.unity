@@ -175,7 +175,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 40ff2e515a81541cbb664860588e2c6e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _sourceType: 2
+  _sourceType: 0
   _texture: {fileID: 2800000, guid: 7bce98144b199014bb64e8e8d3c8a838, type: 3}
   _textureUrl: 
   _video: {fileID: 0}
@@ -185,7 +185,7 @@ MonoBehaviour:
   _webcamFrameRate: 30
   _camera: {fileID: 0}
   _outputTexture: {fileID: 0}
-  _outputResolution: {x: 512, y: 512}
+  _outputResolution: {x: 256, y: 256}
   _shader: {fileID: 4800000, guid: 3f7d8db4748f54c638a46cec0b0e61f8, type: 3}
 --- !u!114 &367290632
 MonoBehaviour:
@@ -218,7 +218,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _source: {fileID: 367290631}
   _preview: {fileID: 2053451812}
-  _shaderHandler: {fileID: 367290635}
+  _shaderHandler: {fileID: 367290639}
 --- !u!114 &367290634
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -295,7 +295,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: df5237531cd7dd540af47177d6936529, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _mainComputeShader: {fileID: 7200000, guid: 028c6280c040e8940ac72cea1b13cae5, type: 3}
+  _mainComputeShader: {fileID: 7200000, guid: a34545f0fef9ae642b6e3c6ee4374c43, type: 3}
   _frequency: 37
   _shakeIntensity: 0
 --- !u!114 &367290639
@@ -626,7 +626,7 @@ Camera:
     height: 1
   near clip plane: 0.3
   far clip plane: 1000
-  field of view: 60
+  field of view: 26.991467
   orthographic: 0
   orthographic size: 5
   m_Depth: -1
@@ -695,7 +695,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 512, y: 512}
+  m_SizeDelta: {x: 256, y: 256}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &2053451812
 MonoBehaviour:

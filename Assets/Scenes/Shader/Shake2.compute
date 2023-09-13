@@ -1,6 +1,6 @@
 #include "Linear2Gamma.hlsl"
 
-#pragma kernel Shake2
+#pragma kernel Shake
 
 RWTexture2D<float4> outputTexture;
 Texture2D<float4> inputTexture;
@@ -10,7 +10,7 @@ float frequency;
 float shakeIntensity;
 
 [numthreads(8, 8, 1)]
-void Shake2(uint3 id : SV_DispatchThreadID) {
+void Shake(uint3 id : SV_DispatchThreadID) {
     uint textureWidth, textureHeight;
     inputTexture.GetDimensions(textureWidth, textureHeight);
 
