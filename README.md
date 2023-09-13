@@ -57,3 +57,16 @@ This is a sample of radial blur effect using RadialBlurHandler.cs & RadialBlur.c
 This is a sample of shake effect using ShakerHandler.cs & shake.compute.
 
 ![lenna_shake](https://github.com/s4k10503/UnityShaderCollection/assets/50241623/8f5443c2-d223-4e21-8de9-c80e683ba85d)
+
+### Shake2
+
+This is a sample of shake effect using ShakerHandler.cs & shake2.compute.
+
+https://github.com/s4k10503/UnityShaderCollection/assets/50241623/049bdba8-cc1e-448d-ae2d-47b7ab6e5422
+
+### Fisheye
+
+This is a sample of shake effect using FisheyeHandler.cs & Fisheye.compute.
+
+https://github.com/s4k10503/UnityShaderCollection/assets/50241623/e4bac81f-601a-4c98-b55e-943927453d88
+
