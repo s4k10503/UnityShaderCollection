@@ -509,5 +509,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 894f78222efb4ef4ba84bd34364b2606, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _targetMaterial: {fileID: 2100000, guid: bc0215b6d52c6a74bb194b4a221587d9, type: 2}
-  alphaMultiplier: 1.5
+  TargetMaterial: {fileID: 2100000, guid: bc0215b6d52c6a74bb194b4a221587d9, type: 2}
+  _alphaMultiplier: 1.5
