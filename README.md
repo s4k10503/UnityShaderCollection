@@ -93,3 +93,9 @@ This is a sample project that allows for the visualization and dynamic manipulat
 This is a sample of the ViewAngleTransparency effect using ViewAngleTransparencyHandler.cs & ViewAngleTransparency.shader.
 
 <https://github.com/s4k10503/UnityShaderCollection/assets/50241623/5a42ad0a-f1f8-4beb-8e7d-c78e08fff225>
+
+#### ToonWithOutline
+
+This is a sample of the Toon effect using ToonWithOutlineyHandler.cs & ToonWithOutline.shader.
+
+<https://github.com/s4k10503/UnityShaderCollection/assets/50241623/ecda7cb8-740a-4a1d-b62c-8f0d1e0240d4>
