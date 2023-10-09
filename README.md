@@ -1,6 +1,6 @@
 # UnityShaderCollection
 
-I plan to add various shaders in the future. Now there is a file about compute shaders.
+I plan to add various shaders in the future.
 
 ## Visualizer2D.unity
 
@@ -62,11 +62,34 @@ This is a sample of shake effect using ShakerHandler.cs & shake.compute.
 
 This is a sample of shake effect using ShakerHandler.cs & shake2.compute.
 
-https://github.com/s4k10503/UnityShaderCollection/assets/50241623/049bdba8-cc1e-448d-ae2d-47b7ab6e5422
+<https://github.com/s4k10503/UnityShaderCollection/assets/50241623/049bdba8-cc1e-448d-ae2d-47b7ab6e5422>
 
 ### Fisheye
 
 This is a sample of shake effect using FisheyeHandler.cs & Fisheye.compute.
 
-https://github.com/s4k10503/UnityShaderCollection/assets/50241623/e4bac81f-601a-4c98-b55e-943927453d88
+<https://github.com/s4k10503/UnityShaderCollection/assets/50241623/e4bac81f-601a-4c98-b55e-943927453d88>
 
+## Visualizer3D.unity
+
+This is a sample project that allows for the visualization and dynamic manipulation of surface shaders in Unity.
+
+### Features
+
+- ISurfaceShaderHandler Interface: This interface serves as a generalized contract for handling different types of surface shaders.
+- SurfaceShaderHandler Class: This class acts as a base class implementing the ISurfaceShaderHandler, designed for generic surface shader manipulations.
+
+### Usage
+
+1. Open your Unity project.
+1. Navigate to the object where you have attached a script derived from SurfaceShaderHandler.
+1. Assign the material you wish to manipulate to the TargetMaterial field of the script.
+1. Run your project. You can now dynamically adjust the shader parameters via the script.
+
+### Examples
+
+#### ViewAngleTransparency
+
+This is a sample of the ViewAngleTransparency effect using ViewAngleTransparencyHandler.cs & ViewAngleTransparency.shader.
+
+<https://github.com/s4k10503/UnityShaderCollection/assets/50241623/5a42ad0a-f1f8-4beb-8e7d-c78e08fff225>
