@@ -3,7 +3,7 @@ using UnityEngine;
 /// <summary>
 /// Interface for handling surface shaders.
 /// </summary>
-public interface ISurfaceShaderHandler
+public interface IMaterialShaderHandler
 {
     /// <summary>
     /// Updates the shader parameters for the given material.

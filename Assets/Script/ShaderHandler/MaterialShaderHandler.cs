@@ -3,7 +3,7 @@ using UnityEngine;
 /// <summary>
 /// Base class for handling surface shaders.
 /// </summary>
-public class SurfaceShaderHandler : MonoBehaviour, ISurfaceShaderHandler
+public class MaterialShaderHandler : MonoBehaviour, IMaterialShaderHandler
 {
     /// <summary>
     /// The material whose shader parameters will be updated.
