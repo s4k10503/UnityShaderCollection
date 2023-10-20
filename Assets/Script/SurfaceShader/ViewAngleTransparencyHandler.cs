@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ViewAngleTransparencyHandler : SurfaceShaderHandler
+public class ViewAngleTransparencyHandler : MaterialShaderHandler
 {
     [SerializeField, Range(0, 1.5f)] float _alphaMultiplier = 1.5f;
 

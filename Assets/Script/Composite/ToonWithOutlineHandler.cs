@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ToonWithOutlineHandler : SurfaceShaderHandler
+public class ToonWithOutlineHandler : MaterialShaderHandler
 {
     [SerializeField, Range(0, 0.1f)] float _outlineWidth = 0.0f;
 

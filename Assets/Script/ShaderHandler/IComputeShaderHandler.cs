@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public interface IShaderHandler
+public interface IComputeShaderHandler
 {
     void RunShader(RenderTexture inputTexture, RenderTexture tempTexture, RenderTexture outputTexture);
 }
