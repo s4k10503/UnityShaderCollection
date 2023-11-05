@@ -217,6 +217,37 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 50, y: -30, z: 0}
+--- !u!1 &330185122
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 330185124}
+  m_Layer: 0
+  m_Name: MaterialHandler
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &330185124
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 330185122}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 4
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1147855590
 GameObject:
   m_ObjectHideFlags: 0
@@ -326,6 +357,7 @@ GameObject:
   - component: {fileID: 1506271154}
   - component: {fileID: 1506271153}
   - component: {fileID: 1506271152}
+  - component: {fileID: 1506271155}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -364,7 +396,7 @@ Camera:
     y: 0
     width: 1
     height: 1
-  near clip plane: 0.3
+  near clip plane: 0.01
   far clip plane: 1000
   field of view: 60
   orthographic: 0
@@ -399,6 +431,21 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1506271155
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1506271151}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 74c77af2a41d95d44b45beb44e007342, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _depthProcessing: {fileID: 7200000, guid: dce0b22a140553f45acf9bffb4ab1ff3, type: 3}
+  _invertedDepthColor: {fileID: 7200000, guid: c048436975d41d242b1198be8af72bd9, type: 3}
+  _getDepthBuffer: {fileID: 4800000, guid: 16a2986e82e302742bfbdf7974d22b94, type: 3}
 --- !u!1 &1833438360
 GameObject:
   m_ObjectHideFlags: 0
@@ -411,7 +458,6 @@ GameObject:
   - component: {fileID: 1833438363}
   - component: {fileID: 1833438362}
   - component: {fileID: 1833438361}
-  - component: {fileID: 1833438365}
   m_Layer: 0
   m_Name: Sphere
   m_TagString: Untagged
@@ -452,7 +498,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 900538e34c453fd4698b41ccea11c8c2, type: 2}
+  - {fileID: 10303, guid: 0000000000000000f000000000000000, type: 0}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -497,17 +543,3 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1833438365
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1833438360}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1c70738afb1f0524e944008f9cc0152b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  TargetMaterial: {fileID: 2100000, guid: 900538e34c453fd4698b41ccea11c8c2, type: 2}
-  _outlineWidth: 0
