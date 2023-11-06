@@ -99,8 +99,8 @@ public class LinearEyeDepthHandler : MonoBehaviour
     public async UniTask<float> GetDistanceAsync(Vector2 screenCoordinates)
     {
         // Convert screen coordinates to texture coordinates
-        int texX = (int)(screenCoordinates.x * _depthTextureProcessed.width / Screen.width);
-        int texY = (int)(screenCoordinates.y * _depthTextureProcessed.height / Screen.height);
+        int texX = (int)(screenCoordinates.x * _depthTexture.width / Screen.width);
+        int texY = _depthTexture.height - (int)(screenCoordinates.y * _depthTexture.height / Screen.height) - 1;
 
         // Read pixel from the processed depth texture
         RenderTexture.active = _depthTextureProcessed;
