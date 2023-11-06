@@ -1,10 +1,14 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using Cysharp.Threading.Tasks;
 
 public class LinearEyeDepthHandler : MonoBehaviour
 {
+    [Header("Camera Clipping Planes")]
+    [SerializeField, Range(0.01f, 10f)] float _nearClipPlane = 0.01f;
+    [SerializeField, Range(10f, 1000f)] float _farClipPlane = 1000f;
+
+    [Header("Shaders")]
     [SerializeField] private ComputeShader _invertedDepthColor;
     [SerializeField] private Shader _getDepthBuffer;
 
@@ -25,13 +29,20 @@ public class LinearEyeDepthHandler : MonoBehaviour
 
     void Update()
     {
-        CheckMouseAndShowDepth().Forget();
+        SetCameraClipPlane();
+        CheckMouseAndShowDepth();
     }
 
     private void InitializeCameras()
     {
         _camera = GetComponent<Camera>();
         _camera.depthTextureMode = DepthTextureMode.Depth;
+    }
+
+    private void SetCameraClipPlane()
+    {
+        _camera.nearClipPlane = _nearClipPlane;
+        _camera.farClipPlane = _farClipPlane;
     }
 
     private void InitializeMaterials()
@@ -64,12 +75,12 @@ public class LinearEyeDepthHandler : MonoBehaviour
         _invertedDepthColor.SetTexture(0, "Result", _invertedColorTexture);
     }
 
-    public async UniTask CheckMouseAndShowDepth()
+    public void CheckMouseAndShowDepth()
     {
         if (Input.GetMouseButtonDown(0))
         {
             Vector2 mousePosition = Input.mousePosition;
-            float depth = await GetDistanceAsync(mousePosition);
+            float depth = GetDistance(mousePosition);
             Debug.Log($"Depth at mouse position ({mousePosition.x}, {mousePosition.y}): {depth}");
         }
     }
@@ -85,7 +96,7 @@ public class LinearEyeDepthHandler : MonoBehaviour
         Graphics.Blit(_invertedColorTexture, dest);
     }
 
-    public async UniTask<float> GetDistanceAsync(Vector2 screenCoordinates)
+    public float GetDistance(Vector2 screenCoordinates)
     {
         // Convert screen coordinates to texture coordinates
         int texX = (int)(screenCoordinates.x * _invertedColorTexture.width / Screen.width);
@@ -97,7 +108,7 @@ public class LinearEyeDepthHandler : MonoBehaviour
         _tempTexture.Apply();
 
         // Retrieve the inverse of the depth value stored in the red channel
-        float depthValue = 1 / _tempTexture.GetPixel(0, 0).r;
+        float depthValue = 1.0f / _tempTexture.GetPixel(0, 0).r;
 
         // Convert the depth value from view space to world space
         Vector3 worldSpacePoint = _camera.ScreenToWorldPoint(new Vector3(screenCoordinates.x, screenCoordinates.y, depthValue));
