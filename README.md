@@ -108,8 +108,8 @@ This is a sample of the Toon effect using ToonWithOutlineyHandler.cs & ToonWithO
 
 <https://github.com/s4k10503/UnityShaderCollection/assets/50241623/ecda7cb8-740a-4a1d-b62c-8f0d1e0240d4>
 
-### LinearDepth
+### Linear01Depth
 
-This is a sample that uses LinearDepthHandler.cs and LinearDepth.shader to visualize a linearized depth buffer.
+This is a sample that uses Linear01DepthHandler.cs and Linear01Depth.shader to visualize a linearized depth buffer.
 
 <https://github.com/s4k10503/UnityShaderCollection/assets/50241623/3335ccb7-2a44-4208-8520-c0713af9cd9a>

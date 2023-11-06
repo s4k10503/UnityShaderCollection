@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class LinearDepthHandler : MaterialShaderHandler
+public class Linear01DepthHandler : MaterialShaderHandler
 {
     private Camera _camera;
 
