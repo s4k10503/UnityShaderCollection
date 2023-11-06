@@ -5,7 +5,6 @@ using Cysharp.Threading.Tasks;
 
 public class LinearEyeDepthHandler : MonoBehaviour
 {
-    [SerializeField] private ComputeShader _depthProcessing;
     [SerializeField] private ComputeShader _invertedDepthColor;
     [SerializeField] private Shader _getDepthBuffer;
 
@@ -13,7 +12,6 @@ public class LinearEyeDepthHandler : MonoBehaviour
     private Material _depthMaterial;
 
     private RenderTexture _depthTexture;
-    private RenderTexture _depthTextureProcessed;
     private RenderTexture _invertedColorTexture;
     private Texture2D _tempTexture;
 
@@ -45,7 +43,6 @@ public class LinearEyeDepthHandler : MonoBehaviour
     {
         // Initialize render textures with a floating point format for depth
         _depthTexture = CreateRenderTexture(RenderTextureFormat.RFloat);
-        _depthTextureProcessed = CreateRenderTexture(RenderTextureFormat.ARGBFloat, true);
         _invertedColorTexture = CreateRenderTexture(RenderTextureFormat.ARGBFloat, true);
 
         // Create a 1x1 texture for reading depth value
@@ -64,11 +61,6 @@ public class LinearEyeDepthHandler : MonoBehaviour
 
     private void InitializeComputeShaders()
     {
-        _depthProcessing.SetTexture(0, "Result", _depthTextureProcessed);
-        _depthProcessing.SetFloat("NearClip", _camera.nearClipPlane);
-        _depthProcessing.SetFloat("FarClip", _camera.farClipPlane);
-
-        _invertedDepthColor.SetTexture(0, "Input", _depthTextureProcessed);
         _invertedDepthColor.SetTexture(0, "Result", _invertedColorTexture);
     }
 
@@ -87,10 +79,7 @@ public class LinearEyeDepthHandler : MonoBehaviour
         Graphics.Blit(src, _depthTexture, _depthMaterial);
 
         // Set the depth texture in compute shader, and run the compute shader
-        _depthProcessing.SetTexture(0, "DepthTexture", _depthTexture);
-        _depthProcessing.Dispatch(0, _depthTextureProcessed.width / 32, _depthTextureProcessed.height / 32, 1);
-
-        _invertedDepthColor.SetTexture(0, "DepthTexture", _depthTextureProcessed);
+        _invertedDepthColor.SetTexture(0, "DepthTexture", _depthTexture);
         _invertedDepthColor.Dispatch(0, _invertedColorTexture.width / 32, _invertedColorTexture.height / 32, 1);
 
         Graphics.Blit(_invertedColorTexture, dest);
@@ -99,16 +88,16 @@ public class LinearEyeDepthHandler : MonoBehaviour
     public async UniTask<float> GetDistanceAsync(Vector2 screenCoordinates)
     {
         // Convert screen coordinates to texture coordinates
-        int texX = (int)(screenCoordinates.x * _depthTexture.width / Screen.width);
-        int texY = _depthTexture.height - (int)(screenCoordinates.y * _depthTexture.height / Screen.height) - 1;
+        int texX = (int)(screenCoordinates.x * _invertedColorTexture.width / Screen.width);
+        int texY = _invertedColorTexture.height - (int)(screenCoordinates.y * _invertedColorTexture.height / Screen.height) - 1;
 
         // Read pixel from the processed depth texture
-        RenderTexture.active = _depthTextureProcessed;
+        RenderTexture.active = _invertedColorTexture;
         _tempTexture.ReadPixels(new Rect(texX, texY, 1, 1), 0, 0);
         _tempTexture.Apply();
 
-        // The depth value is stored in the red channel
-        float depthValue = _tempTexture.GetPixel(0, 0).r;
+        // Retrieve the inverse of the depth value stored in the red channel
+        float depthValue = 1 / _tempTexture.GetPixel(0, 0).r;
 
         // Convert the depth value from view space to world space
         Vector3 worldSpacePoint = _camera.ScreenToWorldPoint(new Vector3(screenCoordinates.x, screenCoordinates.y, depthValue));
@@ -123,7 +112,6 @@ public class LinearEyeDepthHandler : MonoBehaviour
     {
         // Cleanup when the script is destroyed
         if (_depthTexture != null) _depthTexture.Release();
-        if (_depthTextureProcessed != null) _depthTextureProcessed.Release();
         if (_invertedColorTexture != null) _invertedColorTexture.Release();
         if (_tempTexture != null) Destroy(_tempTexture);
         if (_depthMaterial != null) Destroy(_depthMaterial);
