@@ -108,8 +108,19 @@ This is a sample of the Toon effect using ToonWithOutlineyHandler.cs & ToonWithO
 
 <https://github.com/s4k10503/UnityShaderCollection/assets/50241623/ecda7cb8-740a-4a1d-b62c-8f0d1e0240d4>
 
-### LinearDepth
+#### Linear01Depth
 
-This is a sample that uses LinearDepthHandler.cs and LinearDepth.shader to visualize a linearized depth buffer.
+This is a sample that uses Linear01DepthHandler.cs and Linear01Depth.shader to visualize a linearized depth buffer.  
+The screen displays the linearized depth value between 0 and 1 based on the near and far clips on the screen.  
+You can adjust near and far clips from the inspector.  
 
 <https://github.com/s4k10503/UnityShaderCollection/assets/50241623/3335ccb7-2a44-4208-8520-c0713af9cd9a>
+
+#### LinearEyeDepth
+
+This is a sample that uses LinearEyeDepthHandler.cs, LinearEyeDepth.shader, and InvertedDepthColor.compute to visualize a linearized depth buffer.  
+The screen displays the reciprocal of the actual depth value from the camera to the object.  
+Clicking on the screen will display the actual depth value at that coordinate on the console.  
+You can adjust near and far clips from the inspector.  
+
+<https://github.com/s4k10503/UnityShaderCollection/assets/50241623/593bac8c-c488-4999-9f03-61c1de554b0a>
